@@ -1,0 +1,8 @@
+sim_build_*/
+results/
+results.xml
+coverage.dat
+__pycache__/
+*.fst
+.env
+.venv/

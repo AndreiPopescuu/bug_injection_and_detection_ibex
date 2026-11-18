@@ -1,0 +1,53 @@
+ml4dv ibex_cpu coverage plan — 196 bins
+========================================
+
+The DUT is an Ibex RISC-V core with RV32E=0, RV32M=RV32MFast, RV32B=RV32BNone,
+BranchTargetALU=0, WritebackStage=0. Each stimulus is a program written into
+instruction memory; the CPU retires instructions and functional coverage is
+sampled through the RVFI (RISC-V Formal Interface) at every retirement.
+
+The plan covers 14 RISC-V instructions:
+
+  R-type ALU (10): ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+  S-type stores (3): SB, SH, SW
+  Jump (1): JAL
+
+For each instruction, several coverpoints are sampled:
+
+  SEEN         — the instruction has retired at least once.
+  ZERO_DST     — the instruction retired with rd=x0.
+                 Applies to: 10 R-type + JAL. (S-type has no rd.) = 11 bins.
+  ZERO_SRC     — the instruction retired with at least one source = x0.
+                 Applies to: 10 R-type (rs1 or rs2 = x0) +
+                             3 S-type (rs1 or rs2 = x0). = 13 bins.
+  SAME_SRC     — the instruction retired with rs1 == rs2.
+                 Applies to: 10 R-type + 3 S-type. = 13 bins.
+  BR_BACKWARDS — JAL retired with a negative offset (jumps to lower address).
+  BR_FORWARDS  — JAL retired with a positive offset (jumps to higher address).
+                 Each applies to JAL only. = 2 bins total.
+  RAW_HAZARD   — the current instruction reads a register (rs1 or rs2) that
+                 was WRITTEN by the IMMEDIATELY PREVIOUS retired instruction.
+                 Cross-coverage: this is a (producer, consumer) pair.
+                 - Producer must be an instruction with a destination register:
+                   10 R-type + JAL = 11 options.
+                 - Consumer must be an instruction that reads a register:
+                   10 R-type (reads rs1, rs2) + 3 S-type (reads rs1, rs2) = 13.
+                 - 11 × 13 = 143 bins. The key invariant is "immediately
+                   previous RETIRED": another instruction between them (even
+                   a NOP) breaks the hazard.
+
+Total: 14 (SEEN) + 11 (ZERO_DST) + 13 (ZERO_SRC) + 13 (SAME_SRC) + 2 (BR_*) +
+       143 (RAW_HAZARD) = 196.
+
+Notes:
+  - SEEN bins are easy once the instruction decodes correctly.
+  - ZERO_DST on JAL fires when rd=x0 (jump without saving return address).
+  - ZERO_SRC and SAME_SRC on stores: rs2 is the DATA register being stored,
+    rs1 is the ADDRESS base. ZERO_SRC fires if either is x0; SAME_SRC fires
+    if rs1 == rs2 (same register used for both address and data).
+  - BR_BACKWARDS: a JAL back to a lower address. If the target is an
+    already-executed instruction, you create a loop — be careful with escape.
+  - RAW_HAZARD requires back-to-back retirement. In a pipelined CPU with
+    hazard interlock, the hazard is detected but the consumer is still
+    stalled; what matters here is that the SAMPLED retirement order has the
+    pair in consecutive positions.

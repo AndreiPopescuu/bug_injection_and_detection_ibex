@@ -1,0 +1,78 @@
+Extended Level-4 coverage plan for ibex_cpu (5,615 bins)
+=========================================================
+
+The DUT is an Ibex RISC-V core (RV32IM, no compressed). Each stimulus is a
+program loaded into instruction memory. The CPU retires instructions in order;
+a Python monitor samples functional coverage at each retirement via RVFI.
+
+30 instructions in the plan:
+
+  R-type ALU (10): ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+  I-type ALU (9):  ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI
+  Loads      (5):  LB, LH, LW, LBU, LHU
+  Stores     (3):  SB, SH, SW
+  CSR        (3):  CSRRW, CSRRS, CSRRC  (fixed CSR = mscratch 0x340, side-effect-free scratchpad)
+
+Op categories used by bin definitions:
+
+  WRITERS (27)   = R-type + I-ALU + Loads + CSR  (ops that write rd)
+  READERS (30)   = all 30 ops                    (anything that reads rs1 or rs2)
+  READERS_TWO (13) = R-type + Stores             (ops that read BOTH rs1 and rs2)
+  IMM_OPS (17)   = I-ALU + Loads + Stores        (ops with an immediate field)
+  CHAIN_R (10)   = R-type                        (ops eligible as chain middle/outer)
+
+Bin categories:
+
+  1. SEEN (30 bins). One bin per op. Fires the first time that op retires.
+
+  2. ZERO_DST (27 bins). One bin per WRITER op. Fires when a retirement of
+     that op has rd = x0. (Stores excluded — they don't write rd.)
+
+  3. ZERO_SRC (30 bins). One bin per READER op. Fires when a retirement reads
+     at least one source register x0 (rs1 or rs2 depending on op class).
+
+  4. SAME_SRC (13 bins). One bin per READER_TWO op. Fires when rs1 == rs2 on
+     a retirement. Only R-type and Stores read two source registers.
+
+  5. IMM_BUCKETS (85 bins). 17 IMM_OPS × 5 buckets:
+       bucket 0 = very negative (imm ≤ -1024)
+       bucket 1 = small negative (-1024 < imm < 0)
+       bucket 2 = zero (imm == 0)
+       bucket 3 = small positive (0 < imm < 1024)
+       bucket 4 = very positive (imm ≥ 1024)
+     Each imm-op fires one bucket per retirement, selected by its imm value.
+     Shifts (SLLI/SRLI/SRAI) bucket their 5-bit shamt similarly: 0 → bucket 2,
+     1..7 → 1, 8..30 → 3, 31 → 4.
+
+  6. RAW_DIST (2,430 bins). 27 WRITERS × 30 READERS × 3 distances.
+     Fires when the current retirement reads a source register (rs1 or rs2)
+     that was WRITTEN by `writer_op` EXACTLY `N` retirements ago (N ∈ {1,2,3}).
+     Distance 1 = immediately previous retirement produced the value.
+     Distance 2 = retirement before that.
+     Distance 3 = three retirements ago.
+     If the writer at that source was 4+ retirements back, no RAW bin fires.
+     The reader counts ONLY if it actually reads that source (rs1 or rs2).
+
+  7. K3_CHAIN (3,000 bins). 10 R_outer × 10 R_mid × 30 R_tail:
+     Three CONSECUTIVE retirements with a true data-flow chain:
+       retire[t-2]:  op_o (R-type), writes rd_o (!= x0)
+       retire[t-1]:  op_m (R-type), reads rd_o (rs1 or rs2), writes rd_m (!= x0)
+       retire[t]:    op   (any READER), reads rd_m (rs1 or rs2)
+     Fires the K3 bin indexed (op_o, op_m, op). All three retirements must be
+     adjacent in retirement order (no intervening retirement breaks it).
+
+Register convention (harness-provided prelude):
+  x0 is hardwired to zero (RISC-V).
+  x1..x15 are initialized by the harness prelude to the values 1..15.
+  x16..x31 are undefined at start; use ADDI to initialize if you need a known
+  value. Any builder's writes to x1..x31 persist across builders; later
+  builders see modified state.
+
+Total: 30 + 27 + 30 + 13 + 85 + 2,430 + 3,000 = 5,615 bins.
+
+Difficulty intuition:
+  SEEN / ZERO_DST / ZERO_SRC / SAME_SRC — trivial once you emit each op.
+  IMM_BUCKETS — needs each imm-op at each of 5 corner values.
+  RAW_DIST 1 — adjacent producer+consumer; same as plan ml4dv.
+  RAW_DIST 2/3 — producer N retirements before consumer (insert N-1 fillers).
+  K3_CHAIN — 3 adjacent R-type + reader with register chaining (hardest).

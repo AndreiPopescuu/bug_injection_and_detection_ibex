@@ -1,0 +1,10 @@
+m000	opcode_const	opimm_opcode_relabel	The 'OPCODE_OP_IMM' case label is swapped to 'OPCODE_LOAD' in the main arm. OP-IMM instructions (addi/slti/...) will fall through to default.
+m001	case_arm_swap	branch_swap_beq_bne	Swap BEQ and BNE in the BRANCH funct3 case. Classic developer mistake; visible on alu_operator_o output for 3'b000 / 3'b001 stimuli.
+m002	case_arm_swap	branch_swap_blt_bge	Swap BLT and BGE in the BRANCH funct3 case. Would cause silent data-dependent faults in real CPU.
+m003	delete_illegal	load_default_not_illegal	LOAD's default data_type case: illegal=1 -> illegal=0. Reserved funct3 LOAD size values no longer flagged illegal.
+m004	bit_slice	branch_funct3_slice_off_by_one	Shift the branch funct3 slice from [14:12] to [13:11]. Decode now reads wrong bits -> wrong alu_operator for all branches.
+m005	invert_cond	invert_illegal_c_check	Invert the illegal_c_insn_i gate so illegal compressed insn no longer forces illegal_insn. Side-input handling inverted.
+m006	alu_op_replace	jal_target_sub_instead_add	JAL jump target computed with SUB instead of ADD. Branches jump wrong.
+m007	signal_force	opimm_no_writeback	OP_IMM instructions no longer write back (rf_we forced low). All ADDI/SLTI/XORI results silently discarded.
+m008	invert_cond	load_lwu_guard_inverted	The 'lwu does not exist' guard inverted: lwu (bit14=1) is no longer flagged illegal; legal lw (bit14=0) IS flagged illegal.
+m009	case_arm_swap	branch_swap_bltu_bgeu	Swap BLTU and BGEU arms. Unsigned-vs-signed-comparison error.

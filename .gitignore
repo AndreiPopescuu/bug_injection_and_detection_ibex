@@ -1,0 +1,37 @@
+# Build artifacts
+sim_build*/
+results/
+results.xml
+coverage.dat
+mutation_results/
+*.fst
+*.vcd
+*.wlf
+trace_core_*.log
+cocotb_cosim.log
+*.hex
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Secrets / env
+.env
+.env.*
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claude Code local state
+.claude/
+
+# Scratch
+tmp/
+scratch/
