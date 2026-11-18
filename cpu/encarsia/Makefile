@@ -11,6 +11,9 @@ TOPLEVEL      := encarsia_tb
 MODULE        := test_encarsia
 SIM           := verilator
 EXTRA_ARGS    += --trace -Wno-fatal
+# Code coverage: line + toggle. Produces coverage.dat under SIM_BUILD dir
+# after simulation. Parse with `verilator_coverage` for report.
+EXTRA_ARGS    += --coverage-line --coverage-toggle
 EXTRA_ARGS    += -Wno-WIDTHEXPAND -Wno-WIDTHTRUNC -Wno-UNOPTFLAT -Wno-WIDTH -Wno-CASEOVERLAP -Wno-LATCH -Wno-CASEINCOMPLETE -Wno-UNUSED
 EXTRA_ARGS    += -Wno-DECLFILENAME -Wno-PINCONNECTEMPTY -Wno-IMPLICIT -Wno-ASCRANGE
 EXTRA_ARGS    += -Wno-PINMISSING -Wno-SELRANGE -Wno-STMTDLY
