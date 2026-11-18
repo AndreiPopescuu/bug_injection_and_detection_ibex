@@ -1,0 +1,340 @@
+{
+  "results": [
+    {
+      "id": "driver_1198",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 18.1,
+          "hit": 7193,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_254",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7104,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_293",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7100,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_394",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7104,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_39",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7104,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_526",
+      "verdict": "KILLED",
+      "coverage": {
+        "line": {
+          "pct": 39.0,
+          "hit": 618,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.8,
+          "hit": 7065,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_565",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 18.0,
+          "hit": 7133,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_619",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7130,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_743",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7104,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_779",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7104,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_820",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7104,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_858",
+      "verdict": "KILLED",
+      "coverage": {
+        "line": {
+          "pct": 34.0,
+          "hit": 539,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 10.5,
+          "hit": 4169,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_945",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7104,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_963",
+      "verdict": "KILLED",
+      "coverage": {
+        "line": {
+          "pct": 39.6,
+          "hit": 627,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 19.6,
+          "hit": 7782,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_974",
+      "verdict": "KILLED",
+      "coverage": {
+        "line": {
+          "pct": 39.6,
+          "hit": 627,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 19.6,
+          "hit": 7782,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "golden",
+      "verdict": "GOLDEN",
+      "coverage": {
+        "line": {
+          "pct": 39.2,
+          "hit": 622,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.9,
+          "hit": 7104,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    }
+  ]
+}
