@@ -1,0 +1,5 @@
+traces/
+sim_build_*/
+results_*.xml
+*.log
+smoke_*_trace.json
