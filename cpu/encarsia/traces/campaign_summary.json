@@ -1,0 +1,20 @@
+{
+  "golden_trace": "golden_trace.json",
+  "results": [
+    {"id": "driver_1198", "verdict": "SURVIVE"},
+    {"id": "driver_254", "verdict": "SURVIVE"},
+    {"id": "driver_293", "verdict": "SURVIVE"},
+    {"id": "driver_39", "verdict": "SURVIVE"},
+    {"id": "driver_394", "verdict": "SURVIVE"},
+    {"id": "driver_526", "verdict": "SURVIVE"},
+    {"id": "driver_565", "verdict": "SURVIVE"},
+    {"id": "driver_619", "verdict": "SURVIVE"},
+    {"id": "driver_743", "verdict": "SURVIVE"},
+    {"id": "driver_779", "verdict": "SURVIVE"},
+    {"id": "driver_820", "verdict": "SURVIVE"},
+    {"id": "driver_858", "verdict": "SURVIVE"},
+    {"id": "driver_945", "verdict": "SURVIVE"},
+    {"id": "driver_963", "verdict": "SURVIVE"},
+    {"id": "driver_974", "verdict": "SURVIVE"}
+  ]
+}

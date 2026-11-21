@@ -1,0 +1,162 @@
+{
+  "n_bugs_converted": 15,
+  "n_skipped": 1,
+  "bugs": [
+    {
+      "id": "driver_1198",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "1198",
+      "verilog": "driver_1198.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_1198",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_254",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "254",
+      "verilog": "driver_254.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_254",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_293",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "293",
+      "verilog": "driver_293.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_293",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_39",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "39",
+      "verilog": "driver_39.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_39",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_394",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "394",
+      "verilog": "driver_394.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_394",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_526",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "526",
+      "verilog": "driver_526.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_526",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_565",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "565",
+      "verilog": "driver_565.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_565",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_619",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "619",
+      "verilog": "driver_619.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_619",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_743",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "743",
+      "verilog": "driver_743.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_743",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_779",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "779",
+      "verilog": "driver_779.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_779",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_820",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "820",
+      "verilog": "driver_820.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_820",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_858",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "858",
+      "verilog": "driver_858.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_858",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_945",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "945",
+      "verilog": "driver_945.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_945",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_963",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "963",
+      "verilog": "driver_963.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_963",
+      "golden_top_module": "ibex_golden_driver"
+    },
+    {
+      "id": "driver_974",
+      "category": "driver",
+      "subtype": "signal_mix_up",
+      "encarsia_id": "974",
+      "verilog": "driver_974.v",
+      "golden": "reference_driver.v",
+      "top_module": "ibex_bug_driver_974",
+      "golden_top_module": "ibex_golden_driver"
+    }
+  ],
+  "skipped": [
+    {
+      "id": "mux_reference",
+      "reason": "needs Encarsia yosys fork: yosys fail on reference.rtlil: ERROR: Found error in internal cell $paramod$a7b3f37e1f713a4d0901b62b3f601f61ae6218e0\\cel"
+    }
+  ]
+}

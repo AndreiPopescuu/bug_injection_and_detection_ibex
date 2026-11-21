@@ -1,0 +1,35 @@
+[driver_945] building...
+rm -f results_driver_945.xml
+"make" -f Makefile results_driver_945.xml
+make[1]: Entering directory '/home/andre/ibex-crt-llm-coverage/crt-coverage/cpu/encarsia'
+/home/andre/ibex_env/lib/python3.12/site-packages/cocotb_tools/makefiles/simulators/Makefile.verilator:69: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+rm -f results_driver_945.xml
+COCOTB_TEST_MODULES=test_encarsia COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=encarsia_tb TOPLEVEL_LANG=verilog \
+         sim_build_driver_945/Vtop  --trace -Wno-fatal -Wno-WIDTHEXPAND -Wno-WIDTHTRUNC -Wno-UNOPTFLAT -Wno-WIDTH -Wno-CASEOVERLAP -Wno-LATCH -Wno-CASEINCOMPLETE -Wno-UNUSED -Wno-DECLFILENAME -Wno-PINCONNECTEMPTY -Wno-IMPLICIT -Wno-ASCRANGE -Wno-PINMISSING -Wno-SELRANGE -Wno-STMTDLY   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/andre/ibex_env/bin/python3
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Verilator version 5.055 devel
+     0.00ns INFO     cocotb                             Seeding Python random module with 1795013061
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/andre/ibex_env/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_encarsia.encarsia_coverage (1/1)
+[encarsia] program_words=6 start_addr=0x100080 cycles=200
+     0.00ns WARNING  py.warnings                        /home/andre/ibex-crt-llm-coverage/crt-coverage/cpu/encarsia/test_encarsia.py:125: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          cocotb.start_soon(Clock(dut.clk_i, 10, units="ns").start())
+     0.00ns WARNING  py.warnings                        /home/andre/ibex-crt-llm-coverage/crt-coverage/cpu/encarsia/test_encarsia.py:127: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          await Timer(15, units="ns")
+    40.00ns WARNING  py.warnings                        /home/andre/ibex-crt-llm-coverage/crt-coverage/cpu/encarsia/test_encarsia.py:130: DeprecationWarning: The 'units' argument has been renamed to 'unit'.
+                                                          await Timer(5, units="ns")
+[encarsia] instr_trace_len=7  data_trace_len=0
+[encarsia] wrote /home/andre/ibex-crt-llm-coverage/crt-coverage/cpu/encarsia/traces/driver_945_trace.json
+  2040.00ns INFO     cocotb.regression                  test_encarsia.encarsia_coverage passed
+  2040.00ns INFO     cocotb.regression                  *****************************************************************************************
+                                                        ** TEST                             STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *****************************************************************************************
+                                                        ** test_encarsia.encarsia_coverage   PASS        2040.00           0.02      97802.85  **
+                                                        *****************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0                  2040.00           0.02      93572.69  **
+                                                        *****************************************************************************************
+- (null):0: Verilog $finish
+make[1]: Leaving directory '/home/andre/ibex-crt-llm-coverage/crt-coverage/cpu/encarsia'

@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1795012504" />
+    <testcase name="encarsia_coverage" classname="test_encarsia" file="/home/andre/ibex-crt-llm-coverage/crt-coverage/cpu/encarsia/test_encarsia.py" lineno="112" time="0.012999296188354492" sim_time_ns="2040.0" ratio_time="156931.57309759184" />
+  </testsuite>
+</testsuites>

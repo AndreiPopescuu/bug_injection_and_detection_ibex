@@ -1,0 +1,56 @@
+{
+  "program_words": 4,
+  "start_addr": 1048704,
+  "max_cycles": 200,
+  "instr_trace": [
+    {
+      "cycle": 2,
+      "op": "LOAD",
+      "addr": 1048704,
+      "data": 5243027,
+      "be": 15,
+      "we": 0
+    },
+    {
+      "cycle": 4,
+      "op": "LOAD",
+      "addr": 1048708,
+      "data": 10486035,
+      "be": 15,
+      "we": 0
+    },
+    {
+      "cycle": 6,
+      "op": "LOAD",
+      "addr": 1048712,
+      "data": 2130355,
+      "be": 15,
+      "we": 0
+    },
+    {
+      "cycle": 8,
+      "op": "LOAD",
+      "addr": 1048716,
+      "data": 273678451,
+      "be": 15,
+      "we": 0
+    },
+    {
+      "cycle": 10,
+      "op": "LOAD",
+      "addr": 1048720,
+      "data": 19,
+      "be": 15,
+      "we": 0
+    },
+    {
+      "cycle": 12,
+      "op": "LOAD",
+      "addr": 1048724,
+      "data": 19,
+      "be": 15,
+      "we": 0
+    }
+  ],
+  "data_trace": []
+}
