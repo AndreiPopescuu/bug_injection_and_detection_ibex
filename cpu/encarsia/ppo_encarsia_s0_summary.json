@@ -1,0 +1,319 @@
+{
+  "results": [
+    {
+      "id": "driver_1198",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 34.5,
+          "hit": 13721,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_254",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13199,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_293",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13195,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_394",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.3,
+          "hit": 13217,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_526",
+      "verdict": "KILLED",
+      "coverage": {
+        "line": {
+          "pct": 45.3,
+          "hit": 718,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 27.7,
+          "hit": 11002,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_565",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13191,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_619",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.3,
+          "hit": 13213,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_743",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13199,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_779",
+      "verdict": "KILLED",
+      "coverage": {
+        "line": {
+          "pct": 48.5,
+          "hit": 768,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 38.6,
+          "hit": 15352,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_820",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13199,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_858",
+      "verdict": "KILLED",
+      "coverage": {
+        "line": {
+          "pct": 35.4,
+          "hit": 561,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 17.7,
+          "hit": 7052,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_945",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13199,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_963",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13206,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "driver_974",
+      "verdict": "SURVIVE",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13206,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "id": "golden",
+      "verdict": "GOLDEN",
+      "coverage": {
+        "line": {
+          "pct": 46.5,
+          "hit": 737,
+          "total": 1585
+        },
+        "toggle": {
+          "pct": 33.2,
+          "hit": 13199,
+          "total": 39734
+        },
+        "branch": {
+          "pct": 0.0,
+          "hit": 0,
+          "total": 0
+        }
+      }
+    }
+  ]
+}
