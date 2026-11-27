@@ -85,14 +85,31 @@ Diferit de vanilla Ibex pe care s-au antrenat policy-uri RL:
 | L9 fine-tuned pe cellift | 83 | `ppo_cellift.zip` (new) | 2/15 | 38.0 | 17.2 | 16 |
 | L6 fine-tuned pe cellift | 61 | `ppo_cellift_l6.zip` (new) | **4/15** | 43.5 | 26.6 | 1 |
 | **`ppo_encarsia`** (78 safe ops, from scratch) | 78 | `codec_encarsia` (custom) | **3/14** | **46.5** | **33.2** | **1** |
+| `ppo_encarsia` + **trap handler** | 78 | + prologue mtvec + handler @ 0x200000 | **3/15** | 48.3 | 30.9 | 1 |
+| **L6 PPO stoch + trap handler** | 61 | — | **7/14** | **54.6** | **47.3** | 1 |
 
 **NOTE**: `driver_39` crashed (infinite loop in Vtop — bug cauzează loop fără
-trap). Excluded din stats. Dacă adăugam, era 3/15 (20%).
+trap). Excluded din stats. Trap handler-ul nu ajută pentru acest bug (loop
+fără excepție, nu trap-triggerable).
+
+### Trap handler finding (2026-11-23)
+Adăugarea unui trap handler minimal (mtvec @ 0x200000, 4-instruction handler:
+read mepc, +=4, MRET) în cocotb wrapper (`test_encarsia.py`) — **fără
+modificări la Encarsia DUT** — a deblocat **3 bugs noi pe L6 PPO stoch**:
+`394, 779, 1198`. Coverage: +11pp line, +20pp toggle.
+
+Intuiție: CSR writes random din policy-ul L6 pot declansa exception paths
+(ex. illegal CSR address). Fără trap handler, CPU intră în fault loop; cu
+trap handler, se revine la cod și execuția continuă → coverage îmbunătățit și
+bugs care se manifestau în stare "post-exception" sunt triggered.
 
 ### Kills per stimulus (unique bugs)
-- **L6 PPO stoch** (safe RVC, 61 ops): `526, 858, 963, 974`
-- **`ppo_encarsia`** (78 safe ops from scratch): `526, 779, 858`
-- **UNION ambele**: `{526, 779, 858, 963, 974}` = **5/15 unique = 33.3%**
+- **L5 random**: `526, 858, 963, 974`
+- **L6 PPO stoch** (no trap handler): `526, 858, 963, 974`
+- **`ppo_encarsia`** (no trap): `526, 779, 858`
+- **`ppo_encarsia`** + trap handler: `526, 858, 1198`
+- **L6 PPO stoch + trap handler**: `394, 526, 779, 858, 963, 974, 1198` ← best standalone
+- **UNION TOATE**: `{394, 526, 779, 858, 963, 974, 1198}` = **7/15 unique = 46.7%** 🏆
 
 ### Finding ensemble
 Stimuli cu diferite action spaces prind **bugs complementari**. L6 stoch prinde
@@ -210,8 +227,9 @@ cpu/encarsia/
 | **L6 PPO stoch (noi)** | PPO trained on vanilla Ibex | **26.7%** (4/15) |
 | **`ppo_encarsia` (noi)** | PPO 78 safe ops from scratch on cellift | **20.0%** (3/15, driver_39 excluded) |
 | **UNION L6 + ppo_encarsia (ensemble)** | diverse action spaces | **33.3%** (5/15) |
+| **UNION ALL + trap handler (ensemble)** | + minimal trap handler in wrapper | **46.7%** (7/15) 🏆 |
 
-**Progres**: de la 0% baseline la 33.3% ensemble, approaching ~40% SOTA.
+**Progres**: de la 0% baseline → 33.3% → **46.7%**, depășim SOTA (~40-42%).
 
 ---
 
