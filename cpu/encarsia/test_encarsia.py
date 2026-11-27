@@ -9,6 +9,16 @@ Env vars:
   PROGRAM_HEX     path to program hex (format: `<addr_hex> <word_hex>` per line)
   TRACE_OUT       path to write JSON trace
   MAX_CYCLES      run cycles (default = 20 * program_words + 400)
+  TRAP_HANDLER    "1" to install a minimal trap handler at 0x200000 with a
+                  prologue setting mtvec. Default: "0" (no trap handler —
+                  WFI/MRET/ECALL halt CPU).
+
+Trap handler behavior (when enabled):
+  * Prologue (2 instructions at BOOT_ADDR): sets mtvec = 0x200000.
+  * Handler (4 instructions at 0x200000): reads mepc, +=4, writes back, MRET.
+    → Any trap (ECALL, EBREAK, illegal, misaligned) advances PC by 4 and
+      returns. WFI still sleeps (no interrupt source) but the policy can at
+      least use the other trap-inducing ops.
 """
 from __future__ import annotations
 
@@ -22,6 +32,28 @@ from cocotb.triggers import ClockCycles, ReadWrite, Timer
 
 
 BOOT_ADDR = 0x100080
+TRAP_HANDLER_ADDR = 0x200000
+
+# ── Trap handler + prologue encodings (hard-coded RISC-V machine code) ────
+# Prologue (at BOOT_ADDR): set mtvec = 0x200000
+#   LUI  x10, 0x00200     # x10 = 0x00200000
+#   CSRRW x0, mtvec, x10  # mtvec = x10
+_PROLOGUE = [
+    0x00200537,  # LUI  x10, 0x200
+    0x30551073,  # CSRRW x0, mtvec(0x305), x10
+]
+
+# Handler (at TRAP_HANDLER_ADDR):
+#   CSRRS x11, mepc, x0   # x11 = mepc
+#   ADDI  x11, x11, 4     # x11 += 4
+#   CSRRW x0, mepc, x11   # mepc = x11
+#   MRET
+_TRAP_HANDLER = [
+    0x341025F3,  # CSRRS x11, mepc(0x341), x0  -- read mepc into x11
+    0x00458593,  # ADDI  x11, x11, 4
+    0x34159073,  # CSRRW x0, mepc, x11         -- write mepc back
+    0x30200073,  # MRET
+]
 
 
 class MemAgent:
@@ -115,12 +147,25 @@ async def encarsia_coverage(dut):
     out_path = Path(os.environ.get("TRACE_OUT", "encarsia_trace.json"))
 
     program, start_addr = _load_program_hex(prog_hex)
+    use_trap_handler = os.environ.get("TRAP_HANDLER", "0") == "1"
     max_cycles = int(os.environ.get("MAX_CYCLES", str(20 * len(program) + 400)))
-    print(f"[encarsia] program_words={len(program)} start_addr=0x{start_addr:x} cycles={max_cycles}")
+    print(f"[encarsia] program_words={len(program)} start_addr=0x{start_addr:x} "
+          f"cycles={max_cycles} trap_handler={use_trap_handler}")
 
     imem = MemAgent(dut, "instr", handle_writes=False, default_rdata=0x00000013)
     dmem = MemAgent(dut, "data",  handle_writes=True,  default_rdata=0x00000000)
-    imem.load_program(program, start_addr)
+
+    if use_trap_handler:
+        # Install prologue at BOOT_ADDR (shifts user program by len(_PROLOGUE))
+        imem.load_program(_PROLOGUE, BOOT_ADDR)
+        user_start = BOOT_ADDR + len(_PROLOGUE) * 4
+        imem.load_program(program, user_start)
+        # Install trap handler at 0x200000
+        imem.load_program(_TRAP_HANDLER, TRAP_HANDLER_ADDR)
+        print(f"[encarsia] prologue at 0x{BOOT_ADDR:x} ({len(_PROLOGUE)} words), "
+              f"user code at 0x{user_start:x}, trap handler at 0x{TRAP_HANDLER_ADDR:x}")
+    else:
+        imem.load_program(program, start_addr)
 
     cocotb.start_soon(Clock(dut.clk_i, 10, units="ns").start())
     dut.rst_ni.value = 1
