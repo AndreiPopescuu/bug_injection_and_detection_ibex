@@ -219,17 +219,17 @@ cpu/encarsia/
 
 | Tool | Approach | Detection |
 |---|---|---|
-| DifuzzRTL (ISCA 2021) | RTL fuzzer, mutation coverage feedback | ~40% |
-| ProcessorFuzz (NDSS 2023) | RTL fuzzer, CSR-based feedback | ~42% |
-| Cascade (USENIX Sec 2024) | ISA-aware RISC-V fuzzer | ~42% |
-| **LLM-CRT L4 (noi)** | Claude Opus, 30 ops no CF | 0% |
-| **L5 random (noi)** | Random sampling, 45 ops +CF | **26.7%** (4/15) |
-| **L6 PPO stoch (noi)** | PPO trained on vanilla Ibex | **26.7%** (4/15) |
-| **`ppo_encarsia` (noi)** | PPO 78 safe ops from scratch on cellift | **20.0%** (3/15, driver_39 excluded) |
-| **UNION L6 + ppo_encarsia (ensemble)** | diverse action spaces | **33.3%** (5/15) |
-| **UNION ALL + trap handler (ensemble)** | + minimal trap handler in wrapper | **46.7%** (7/15) 🏆 |
+| DifuzzRTL / ProcessorFuzz / Cascade | SOTA fuzzers (per Encarsia paper) | **9/15 (60%)** |
+| **LLM-CRT L4 (noi)** | Claude Opus, 30 ops no CF | 0/15 (0%) |
+| **L5 random (noi)** | Random sampling, 45 ops +CF | 4/15 (26.7%) |
+| **L6 PPO stoch (noi)** | PPO trained on vanilla Ibex | 4/15 (26.7%) |
+| **`ppo_encarsia` (noi)** | PPO 78 safe ops from scratch on cellift | 3/15 (20.0%) |
+| **UNION L6 + ppo_encarsia (ensemble)** | diverse action spaces | 5/15 (33.3%) |
+| **UNION ALL + trap handler (ensemble)** | + minimal trap handler in wrapper | **7/15 (46.7%)** |
 
-**Progres**: de la 0% baseline → 33.3% → **46.7%**, depășim SOTA (~40-42%).
+**Progres**: de la 0% baseline → 33.3% → **46.7%**. **Gap față de SOTA: 2 bugs
+(9/15 vs 7/15).** Need to close the gap through per-bug analysis + LLM-CRT
+targeted or novel stimulus strategies.
 
 ---
 
